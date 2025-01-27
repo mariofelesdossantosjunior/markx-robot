@@ -29,6 +29,18 @@ Deve poder remover uma tarefa indesejada
     Remove task by name                 ${task_name}
     Wait Until Page Does Not Contain    ${task_name}    5s
     
+Deve poder concluir uma tarefa
+
+    ${task_name}=   Set Variable    Estudar Java
+    Remove task from database    ${task_name}
+    
+    Do Login
+    Create a new task       ${task_name}
+    Should have task        ${task_name}
+
+    Finish task by name                     ${task_name}
+    Task should be done                     ${task_name}
+    
 
     
 

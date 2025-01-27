@@ -30,4 +30,18 @@ Remove task by name
 
     Click Element                       xpath=//*[@text="${task_name}"]/../..//*[@resource-id="removeTask"]
     Wait Until Element Is Visible       ${button}    5s
-    Click Element                       ${button}            
+    Click Element                       ${button}  
+
+
+Finish task by name
+    [Arguments]  ${task_name}
+
+    ${radio}  Set Variable              xpath=//*[@text="${task_name}"]/../..//*[@resource-id="updateTask"]
+
+    Wait Until Element Is Visible       ${radio}    5s
+    Click Element                       ${radio}      
+
+Task should be done
+    [Arguments]  ${task_name}
+
+    Wait Until Element Is Visible       xpath=//*[@text="${task_name}"]/..//android.widget.ImageView   5s
