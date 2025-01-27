@@ -7,10 +7,27 @@ Test Setup      Start Session
 Test Teardown   Finish Session
 
 *** Test Cases ***
-Deve poder casastrar uma tarefa
+Deve poder cadastrar uma tarefa
+
+    ${task_name}=   Set Variable    Estudar XPath
+    
+    Remove task from database    ${task_name}
 
     Do Login
-    Create a new task   Estudar XPath
+    Create a new task   ${task_name}
+    Should have task    ${task_name}
+
+Deve poder remover uma tarefa indesejada
+
+    ${task_name}=   Set Variable    Comprar refrigerante
+    Remove task from database    ${task_name}
+    
+    Do Login
+    Create a new task   ${task_name}
+    Should have task    ${task_name}
+
+    Remove task         ${task_name}
+    
 
     
 

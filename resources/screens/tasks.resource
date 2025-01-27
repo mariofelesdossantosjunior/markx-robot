@@ -16,5 +16,17 @@ Create a new task
 
     Input Text                          ${new__task__input}  ${task_name}
     Click Element                       ${crete_button}
-    
-    Wait Until Page Contains            ${task_name}  5s
+
+
+Should have task
+    [Arguments]  ${task_name}
+    Wait Until Element Is Visible       xpath=//*[@resource-id="taskText"][@text="${task_name}"]   
+    ...     5s     
+
+Remove task
+    [Arguments]  ${task_name}
+
+    Click Element                        xpath=//*[@text="${task_name}"]/../..//*[@resource-id="removeTask"]
+    Click Element                        xpath=//android.widget.Button[@text="SIM"]
+
+    Wait Until Page Does Not Contain     ${task_name}    5s
