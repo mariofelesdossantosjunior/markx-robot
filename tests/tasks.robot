@@ -23,10 +23,11 @@ Deve poder remover uma tarefa indesejada
     Remove task from database    ${task_name}
     
     Do Login
-    Create a new task   ${task_name}
-    Should have task    ${task_name}
+    Create a new task       ${task_name}
+    Should have task        ${task_name}
 
-    Remove task         ${task_name}
+    Remove task by name                 ${task_name}
+    Wait Until Page Does Not Contain    ${task_name}    5s
     
 
     
